@@ -54,12 +54,11 @@ def download_model():
         FILE_ID = "1-98jTf3tvhzNB1l07twXS1HH0A2rULI9"
 
         gdown.download(
-            id=FILE_ID,
-            output=MODEL_PATH,
-            quiet=False,
-            fuzzy=True
-        )
-
+    id=FILE_ID,
+    output=MODEL_PATH,
+    fuzzy=True,
+     quiet=False
+    )
         print("Model Downloaded Successfully!")
 
 download_model()
