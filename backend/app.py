@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, send_file
 import os
 import numpy as np
 from PIL import Image
-
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 import cv2
 from datetime import datetime
@@ -31,9 +31,11 @@ app = Flask(__name__)
 # FOLDERS
 # =====================================================
 
-UPLOAD_FOLDER = "static/uploads"
-HEATMAP_FOLDER = "static/heatmaps"
-REPORT_FOLDER = "static/reports"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
+HEATMAP_FOLDER = os.path.join(BASE_DIR, "static", "heatmaps")
+REPORT_FOLDER = os.path.join(BASE_DIR, "static", "reports")
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -911,17 +913,16 @@ def contact():
 def download_file(filename):
 
     path = os.path.join(
-
         REPORT_FOLDER,
         filename
-
     )
 
-    return send_file(
+    print("PDF PATH =", path)
+    print("FILE EXISTS =", os.path.exists(path))
 
+    return send_file(
         path,
         as_attachment=True
-
     )
 
 # =====================================================
@@ -1068,22 +1069,23 @@ def predict():
     # =================================================
     # RETURN RESULT
     # =================================================
-
+    image_filename = os.path.basename(file_path)
+    heatmap_filename = os.path.basename(heatmap_path)
     return render_template(
 
-        "index.html",
+    "index.html",
 
-        prediction=predicted_class,
+    prediction=predicted_class,
 
-        confidence=confidence,
+    confidence=confidence,
 
-        image_path=file_path,
+    image_path="uploads/" + image_filename,
 
-        heatmap_path=heatmap_path,
+    heatmap_path="heatmaps/" + heatmap_filename,
 
-        pdf_filename=pdf_filename
+    pdf_filename=pdf_filename
 
-    )
+)
 
 # =====================================================
 # RUN APP
