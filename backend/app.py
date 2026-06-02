@@ -1067,13 +1067,13 @@ def predict():
     # =================================================
     # RETURN RESULT
     # =================================================
-
-
-    print("IMAGE URL =", "uploads/" + image_filename)
-    print("HEATMAP URL =", "heatmaps/" + heatmap_filename)
-    
     image_filename = os.path.basename(file_path)
     heatmap_filename = os.path.basename(heatmap_path)
+
+    #print("IMAGE URL =", "uploads/" + image_filename)
+    #print("HEATMAP URL =", "heatmaps/" + heatmap_filename)
+
+
     return render_template(
 
     "index.html",
