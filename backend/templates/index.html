@@ -445,8 +445,8 @@
 
                     </h3>
 
-                    <img src="{{ image_path }}"
-                         class="uploaded-img">
+                    <img src="{{ url_for('static', filename=image_path) }}"
+                     class="uploaded-img">
 
                     <!-- HEATMAP -->
 
@@ -458,8 +458,8 @@
 
                     </h3>
 
-                    <img src="{{ heatmap_path }}"
-                         class="uploaded-img">
+                    <img src="{{ url_for('static', filename=heatmap_path) }}"
+                     class="uploaded-img">
 
                     {% endif %}
 

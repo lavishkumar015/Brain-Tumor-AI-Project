@@ -973,7 +973,11 @@ def predict():
 
     )
 
+    
     file.save(file_path)
+
+    print("FILE PATH =", file_path)
+    print("FILE EXISTS =", os.path.exists(file_path))
 
     # =================================================
     # IMAGE PROCESSING
@@ -1030,6 +1034,8 @@ def predict():
         file_path
 
     )
+    print("HEATMAP PATH =", heatmap_path)
+    print("HEATMAP EXISTS =", os.path.exists(heatmap_path))
 
     # =================================================
     # PDF
@@ -1061,6 +1067,11 @@ def predict():
     # =================================================
     # RETURN RESULT
     # =================================================
+
+
+    print("IMAGE URL =", "uploads/" + image_filename)
+    print("HEATMAP URL =", "heatmaps/" + heatmap_filename)
+    
     image_filename = os.path.basename(file_path)
     heatmap_filename = os.path.basename(heatmap_path)
     return render_template(
